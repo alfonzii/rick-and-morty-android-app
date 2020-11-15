@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#1C0104"
+    android:padding="8dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorBlock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_holding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/holding_mask_orange" />
+
+        <ImageView
+            android:id="@+id/image_location_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_race_icon"
+            app:layout_constraintStart_toEndOf="@+id/image_holding"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6"
+            app:srcCompat="@drawable/location_icon_earth_2x" />
+
+        <ImageView
+            android:id="@+id/image_race_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/image_status_icon"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/image_location_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6"
+            app:srcCompat="@drawable/race_icon_human_2x" />
+
+        <ImageView
+            android:id="@+id/image_status_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/image_race_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6"
+            app:srcCompat="@drawable/status_icons_alive_2x" />
+
+        <TextView
+            android:id="@+id/text_character_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/fredoka_one_regular"
+            android:textColor="@color/colorOrange"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/image_location_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="General Nathan" />
+
+        <TextView
+            android:id="@+id/text_location_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amaranth_regular"
+            android:textColor="@color/colorGreen"
+            app:layout_constraintEnd_toEndOf="@+id/image_location_icon"
+            app:layout_constraintStart_toStartOf="@+id/image_location_icon"
+            app:layout_constraintTop_toBottomOf="@+id/image_location_icon"
+            tools:text="Earth" />
+
+        <TextView
+            android:id="@+id/text_race_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amaranth_regular"
+            android:textColor="@color/colorGreen"
+            app:layout_constraintEnd_toEndOf="@+id/image_race_icon"
+            app:layout_constraintStart_toStartOf="@+id/image_race_icon"
+            app:layout_constraintTop_toBottomOf="@+id/image_race_icon"
+            tools:text="Humanoid" />
+
+        <TextView
+            android:id="@+id/text_status_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/amaranth_regular"
+            android:textColor="@color/colorGreen"
+            app:layout_constraintEnd_toEndOf="@+id/image_status_icon"
+            app:layout_constraintStart_toStartOf="@+id/image_status_icon"
+            app:layout_constraintTop_toBottomOf="@+id/image_status_icon"
+            tools:text="Alive" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

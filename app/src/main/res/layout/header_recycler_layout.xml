@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/main_bg_1_2x" />
+
+    <ImageView
+        android:id="@+id/image_green_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="528dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/green_bg_2x" />
+
+    <ImageView
+        android:id="@+id/image_rick_and_morty"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_green_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_background"
+        app:layout_constraintVertical_bias="0.1"
+        app:srcCompat="@drawable/logo_rick_morty_2x" />
+
+    <EditText
+        android:id="@+id/edit_input_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlock"
+        android:ems="10"
+        android:fontFamily="@font/amaranth_regular"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorGreen"
+        android:textSize="18sp"
+        android:text="Find your character"
+        app:layout_constraintBottom_toBottomOf="@id/image_background"
+        app:layout_constraintEnd_toEndOf="@id/image_background"
+        app:layout_constraintStart_toStartOf="@id/image_background"
+        app:layout_constraintTop_toTopOf="@id/image_background" />
+
+    <ImageButton
+        android:id="@+id/imgbutton_race"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:background="@color/colorBlock"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/image_background"
+        app:layout_constraintStart_toStartOf="@id/image_background"
+        app:layout_constraintTop_toBottomOf="@+id/edit_input_name"
+        app:layout_constraintVertical_bias="0.15"
+        app:srcCompat="@drawable/race_icon_human_2x" />
+
+    <ImageButton
+        android:id="@+id/imgbutton_location"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:background="@color/colorBlock"
+        app:layout_constraintBottom_toBottomOf="@+id/imgbutton_race"
+        app:layout_constraintEnd_toStartOf="@+id/imgbutton_race"
+        app:layout_constraintStart_toStartOf="@id/image_background"
+        app:layout_constraintTop_toTopOf="@+id/imgbutton_race"
+        app:srcCompat="@drawable/location_icon_earth_2x" />
+
+    <ImageButton
+        android:id="@+id/imgbutton_status"
+        android:layout_width="78dp"
+        android:layout_height="78dp"
+        android:background="@color/colorBlock"
+        app:layout_constraintBottom_toBottomOf="@+id/imgbutton_race"
+        app:layout_constraintEnd_toEndOf="@id/image_background"
+        app:layout_constraintStart_toEndOf="@+id/imgbutton_race"
+        app:layout_constraintTop_toTopOf="@+id/imgbutton_race"
+        app:srcCompat="@drawable/status_icons_alive_2x" />
+
+    <TextView
+        android:id="@+id/text_character_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/amaranth_regular"
+        android:text="TextView"
+        android:textColor="@color/colorDarkRed"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>
