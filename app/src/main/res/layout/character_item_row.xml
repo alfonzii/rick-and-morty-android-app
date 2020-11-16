@@ -30,14 +30,14 @@
             android:layout_height="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/image_race_icon"
+            app:layout_constraintEnd_toStartOf="@+id/image_species_icon"
             app:layout_constraintStart_toEndOf="@+id/image_holding"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6"
             app:srcCompat="@drawable/location_icon_earth_2x" />
 
         <ImageView
-            android:id="@+id/image_race_icon"
+            android:id="@+id/image_species_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +47,7 @@
             app:layout_constraintStart_toEndOf="@+id/image_location_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6"
-            app:srcCompat="@drawable/race_icon_human_2x" />
+            app:srcCompat="@drawable/species_icon_human_2x" />
 
         <ImageView
             android:id="@+id/image_status_icon"
@@ -56,7 +56,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/image_race_icon"
+            app:layout_constraintStart_toEndOf="@+id/image_species_icon"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.6"
             app:srcCompat="@drawable/status_icons_alive_2x" />
@@ -85,14 +85,14 @@
             tools:text="Earth" />
 
         <TextView
-            android:id="@+id/text_race_icon"
+            android:id="@+id/text_species_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/amaranth_regular"
             android:textColor="@color/colorGreen"
-            app:layout_constraintEnd_toEndOf="@+id/image_race_icon"
-            app:layout_constraintStart_toStartOf="@+id/image_race_icon"
-            app:layout_constraintTop_toBottomOf="@+id/image_race_icon"
+            app:layout_constraintEnd_toEndOf="@+id/image_species_icon"
+            app:layout_constraintStart_toStartOf="@+id/image_species_icon"
+            app:layout_constraintTop_toBottomOf="@+id/image_species_icon"
             tools:text="Humanoid" />
 
         <TextView

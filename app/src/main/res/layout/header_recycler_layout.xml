@@ -54,7 +54,7 @@
         app:layout_constraintTop_toTopOf="@id/image_background" />
 
     <ImageButton
-        android:id="@+id/imgbutton_race"
+        android:id="@+id/imgbutton_species"
         android:layout_width="78dp"
         android:layout_height="78dp"
         android:background="@color/colorBlock"
@@ -63,17 +63,17 @@
         app:layout_constraintStart_toStartOf="@id/image_background"
         app:layout_constraintTop_toBottomOf="@+id/edit_input_name"
         app:layout_constraintVertical_bias="0.15"
-        app:srcCompat="@drawable/race_icon_human_2x" />
+        app:srcCompat="@drawable/species_icon_human_2x" />
 
     <ImageButton
         android:id="@+id/imgbutton_location"
         android:layout_width="78dp"
         android:layout_height="78dp"
         android:background="@color/colorBlock"
-        app:layout_constraintBottom_toBottomOf="@+id/imgbutton_race"
-        app:layout_constraintEnd_toStartOf="@+id/imgbutton_race"
+        app:layout_constraintBottom_toBottomOf="@+id/imgbutton_species"
+        app:layout_constraintEnd_toStartOf="@+id/imgbutton_species"
         app:layout_constraintStart_toStartOf="@id/image_background"
-        app:layout_constraintTop_toTopOf="@+id/imgbutton_race"
+        app:layout_constraintTop_toTopOf="@+id/imgbutton_species"
         app:srcCompat="@drawable/location_icon_earth_2x" />
 
     <ImageButton
@@ -81,10 +81,10 @@
         android:layout_width="78dp"
         android:layout_height="78dp"
         android:background="@color/colorBlock"
-        app:layout_constraintBottom_toBottomOf="@+id/imgbutton_race"
+        app:layout_constraintBottom_toBottomOf="@+id/imgbutton_species"
         app:layout_constraintEnd_toEndOf="@id/image_background"
-        app:layout_constraintStart_toEndOf="@+id/imgbutton_race"
-        app:layout_constraintTop_toTopOf="@+id/imgbutton_race"
+        app:layout_constraintStart_toEndOf="@+id/imgbutton_species"
+        app:layout_constraintTop_toTopOf="@+id/imgbutton_species"
         app:srcCompat="@drawable/status_icons_alive_2x" />
 
     <TextView
