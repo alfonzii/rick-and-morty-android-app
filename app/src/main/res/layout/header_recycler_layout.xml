@@ -3,28 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/main_bg_1_2x">
 
-    <ImageView
-        android:id="@+id/image_background"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/main_bg_1_2x" />
 
     <ImageView
         android:id="@+id/image_green_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="528dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/green_bg_2x" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/green_bg" />
 
     <ImageView
         android:id="@+id/image_rick_and_morty"
@@ -33,34 +23,40 @@
         app:layout_constraintBottom_toBottomOf="@+id/image_green_top"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/image_background"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.1"
-        app:srcCompat="@drawable/logo_rick_morty_2x" />
+        app:srcCompat="@drawable/logo_rick_morty" />
 
     <EditText
         android:id="@+id/edit_input_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBlock"
+        android:layout_width="216dp"
+        android:layout_height="43dp"
+        android:background="@drawable/searchbar_shape"
+        android:drawableStart="@drawable/lense_icon"
         android:ems="10"
         android:fontFamily="@font/amaranth_regular"
+        android:gravity="center"
+        android:hint="Find your character"
         android:inputType="textPersonName"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
         android:textColor="@color/colorGreen"
+        android:textColorHint="@drawable/searchbar_selector"
         android:textSize="18sp"
-        android:text="Find your character"
-        app:layout_constraintBottom_toBottomOf="@id/image_background"
-        app:layout_constraintEnd_toEndOf="@id/image_background"
-        app:layout_constraintStart_toStartOf="@id/image_background"
-        app:layout_constraintTop_toTopOf="@id/image_background" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imgbutton_species"
         android:layout_width="78dp"
         android:layout_height="78dp"
-        android:background="@color/colorBlock"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorBlock"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/image_background"
-        app:layout_constraintStart_toStartOf="@id/image_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edit_input_name"
         app:layout_constraintVertical_bias="0.15"
         app:srcCompat="@drawable/species_icon_human_2x" />
@@ -69,10 +65,11 @@
         android:id="@+id/imgbutton_location"
         android:layout_width="78dp"
         android:layout_height="78dp"
-        android:background="@color/colorBlock"
+        android:background="@drawable/roundedbutton"
+        android:backgroundTint="@color/colorBlock"
         app:layout_constraintBottom_toBottomOf="@+id/imgbutton_species"
         app:layout_constraintEnd_toStartOf="@+id/imgbutton_species"
-        app:layout_constraintStart_toStartOf="@id/image_background"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imgbutton_species"
         app:srcCompat="@drawable/location_icon_earth_2x" />
 
@@ -80,9 +77,9 @@
         android:id="@+id/imgbutton_status"
         android:layout_width="78dp"
         android:layout_height="78dp"
-        android:background="@color/colorBlock"
+        android:backgroundTint="@color/colorBlock"
         app:layout_constraintBottom_toBottomOf="@+id/imgbutton_species"
-        app:layout_constraintEnd_toEndOf="@id/image_background"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgbutton_species"
         app:layout_constraintTop_toTopOf="@+id/imgbutton_species"
         app:srcCompat="@drawable/status_icons_alive_2x" />

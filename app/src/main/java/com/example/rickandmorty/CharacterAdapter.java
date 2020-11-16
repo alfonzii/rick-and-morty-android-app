@@ -10,6 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,21 +23,24 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.ViewHolder> {
+public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<Character> data;
     private Context context;
+
+    private static int TYPE_HEADER = 0;
+    private static int TYPE_CHARACTER = 1;
 
     public CharacterAdapter(Context context, Collection<Character> data) {
         this.context = context;
         this.data = new ArrayList<>(data);
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class CharacterViewHolder extends RecyclerView.ViewHolder {
         private ImageView imgHolding, imgSpeciesIcon, imgLocationIcon, imgStatusIcon;
         private TextView txtName, txtSpecies, txtLocation, txtStatus;
 
-        public ViewHolder(View itemView) {
+        public CharacterViewHolder(View itemView) {
             super(itemView);
 
             imgHolding = itemView.findViewById(R.id.image_holding);
@@ -58,14 +63,14 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
 
         private void setTxtName(Context context, Character character, int position) {
             txtName.setTextColor(ContextCompat.getColor(context,
-                    (position % 2 == 0) ? R.color.colorGreen : R.color.colorOrange
+                    (position % 2 == 1) ? R.color.colorGreen : R.color.colorOrange
             ));
             txtName.setText(character.getName());
         }
 
         private void setImgHolding(int position) {
             imgHolding.setImageResource(
-                    (position % 2 == 0) ? R.drawable.holding_mask_green : R.drawable.holding_mask_orange
+                    (position % 2 == 1) ? R.drawable.holding_mask_green : R.drawable.holding_mask_orange
             );
         }
 
@@ -82,11 +87,11 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
             boolean equalsHuman = m.find();
 
             imgSpeciesIcon.setColorFilter(ContextCompat.getColor(context,
-                   equalsHuman ? R.color.colorGreen : R.color.colorOrange
+                    equalsHuman ? R.color.colorGreen : R.color.colorOrange
             ));
 
             txtSpecies.setTextColor(ContextCompat.getColor(context,
-                   equalsHuman ? R.color.colorGreen : R.color.colorOrange
+                    equalsHuman ? R.color.colorGreen : R.color.colorOrange
             ));
 
             txtSpecies.setText(character.getSpecies());
@@ -144,20 +149,60 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
         }
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.character_item_row, parent, false);
-        return new ViewHolder(view);
+    static class HeaderViewHolder extends RecyclerView.ViewHolder {
+        private ImageView imgGreenTop, imgRickAndMorty;
+        private ImageButton imgbuttonLocation, imgbuttonSpecies, imgbuttonStatus;
+        private EditText editCharNameFilter;
+        private TextView txtTotalCharCount;
+
+        public HeaderViewHolder(View itemView) {
+            super(itemView);
+
+            imgGreenTop = itemView.findViewById(R.id.image_green_top);
+            imgRickAndMorty = itemView.findViewById(R.id.image_rick_and_morty);
+            imgbuttonLocation = itemView.findViewById(R.id.imgbutton_location);
+            imgbuttonSpecies = itemView.findViewById(R.id.imgbutton_species);
+            imgbuttonStatus = itemView.findViewById(R.id.imgbutton_status);
+            editCharNameFilter = itemView.findViewById(R.id.edit_input_name);
+            txtTotalCharCount = itemView.findViewById(R.id.text_character_count);
+        }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        viewHolder.setDetails(context, data.get(position), position);
+    public int getItemViewType(int position) {
+        if (position == 0)
+            return TYPE_HEADER;
+        else
+            return TYPE_CHARACTER;
+    }
+
+    @NonNull
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view;
+        if (viewType == TYPE_HEADER) {
+            view = LayoutInflater.from(context).inflate(R.layout.header_recycler_layout, parent, false);
+            return new HeaderViewHolder(view);
+        }
+        else{
+            view = LayoutInflater.from(context).inflate(R.layout.character_item_row, parent, false);
+            return new CharacterViewHolder(view);
+        }
+
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+        if(position >= 1) {
+            ((CharacterViewHolder) viewHolder).setDetails(context, data.get(position-1), position);
+        }
+        else {
+            //TODO implement header layout functionality
+        }
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return data.size() + 1;
     }
 }
