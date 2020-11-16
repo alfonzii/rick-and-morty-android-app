@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Rick and Morty</string>
+    <string name="earth">Earth</string>
 </resources>

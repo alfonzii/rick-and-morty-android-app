@@ -1,8 +1,11 @@
 package com.example.rickandmorty;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.content.res.AppCompatResources;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,21 +57,16 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
         }
 
         private void setTxtName(Context context, Character character, int position) {
-            if (position % 2 == 0) {
-                txtName.setTextColor(ContextCompat.getColor(context, R.color.colorGreen));
-            }
-            else {
-                // is default orange
-            }
+            txtName.setTextColor(ContextCompat.getColor(context,
+                    (position % 2 == 0) ? R.color.colorGreen : R.color.colorOrange
+            ));
             txtName.setText(character.getName());
         }
 
         private void setImgHolding(int position) {
-            if (position % 2 == 0)
-                imgHolding.setImageResource(R.drawable.holding_mask_green);
-            else {
-                // is default orange
-            }
+            imgHolding.setImageResource(
+                    (position % 2 == 0) ? R.drawable.holding_mask_green : R.drawable.holding_mask_orange
+            );
         }
 
         private void setSpecies(Context context, Character character) {
@@ -81,10 +79,15 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
 
             Pattern p = Pattern.compile("[Hh]uman");
             Matcher m = p.matcher(character.getSpecies());
-            if (!m.matches()) {
-                imgSpeciesIcon.setColorFilter(ContextCompat.getColor(context, R.color.colorOrange));
-                txtSpecies.setTextColor(ContextCompat.getColor(context, R.color.colorOrange));
-            }
+            boolean equalsHuman = m.find();
+
+            imgSpeciesIcon.setColorFilter(ContextCompat.getColor(context,
+                   equalsHuman ? R.color.colorGreen : R.color.colorOrange
+            ));
+
+            txtSpecies.setTextColor(ContextCompat.getColor(context,
+                   equalsHuman ? R.color.colorGreen : R.color.colorOrange
+            ));
 
             txtSpecies.setText(character.getSpecies());
         }
@@ -99,24 +102,45 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.View
 
             Pattern p = Pattern.compile("[Ee]arth");
             Matcher m = p.matcher(character.getOriginLocation().getName());
-            if (!m.matches()) {
-                imgLocationIcon.setColorFilter(ContextCompat.getColor(context, R.color.colorOrange));
-                txtLocation.setTextColor(ContextCompat.getColor(context, R.color.colorOrange));
-                txtLocation.setText(character.getOriginLocation().getName());
-            }
+            boolean equalsEarth = m.find();
+
+            imgLocationIcon.setColorFilter(ContextCompat.getColor(context,
+                    equalsEarth ? R.color.colorGreen : R.color.colorOrange
+            ));
+
+            txtLocation.setTextColor(ContextCompat.getColor(context,
+                    equalsEarth ? R.color.colorGreen : R.color.colorOrange
+            ));
+
+            txtLocation.setText(
+                    equalsEarth ? context.getString(R.string.earth) : character.getOriginLocation().getName()
+            );
         }
 
         private void setStatus(Context context, Character character) {
-            if (character.getStatus().equals(Character.Status.DEAD)) {
-                imgStatusIcon.setColorFilter(ContextCompat.getColor(context, R.color.colorOrange));
-                txtStatus.setTextColor(ContextCompat.getColor(context, R.color.colorOrange));
-            } else if (character.getStatus().equals(Character.Status.UNKNOWN)) {
-                imgStatusIcon.setColorFilter(ContextCompat.getColor(context, R.color.colorDarkRed));
-                txtStatus.setTextColor(ContextCompat.getColor(context, R.color.colorDarkRed));
-            } else {
-                // is default alive
+            int color = 0;
+            String status = null;
+
+            switch (character.getStatus()) {
+                case DEAD:
+                    color = R.color.colorOrange;
+                    status = "Dead";
+                    break;
+
+                case ALIVE:
+                    color = R.color.colorGreen;
+                    status = "Alive";
+                    break;
+
+                case UNKNOWN:
+                    color = R.color.colorDarkRed;
+                    status = "unknown";
+                    break;
             }
-            txtStatus.setText(character.getStatus().toString());
+
+            imgStatusIcon.setColorFilter(ContextCompat.getColor(context, color));
+            txtStatus.setTextColor(ContextCompat.getColor(context, color));
+            txtStatus.setText(status);
         }
     }
 
