@@ -8,4 +8,4 @@
 * 5. Bind data to adapter in waves - after 20 items are parsed by parsing library, not at once after everything is parsed. Run the app and don't wait until introductory data loading + LoadBar when loading
 * 6. Download and show image in CharacterViewHolder
 
-* Everything else (ViewHolders onClickListeners with intent to detailed description activity, better and nicer UI, all screens compatibility...)
+* 7. Everything else (ViewHolders onClickListeners with intent to detailed description activity, better and nicer UI, all screens compatibility...)
