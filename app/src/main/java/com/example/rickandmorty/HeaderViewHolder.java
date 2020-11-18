@@ -15,14 +15,16 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
     private EditText editCharNameFilter;
     private TextView txtTotalCharCount;
 
+    private FilterInputListener listener;
+
     private int count = 0;
 
-    FilterInputListener listener;
+
 
     public interface FilterInputListener{
-        void onLocationClicked();
-        void onSpeciesClicked();
-        void onStatusClicked();
+        void onLocationClicked(ImageButton button);
+        void onSpeciesClicked(ImageButton button);
+        void onStatusClicked(ImageButton button);
         void afterTextChanged(Editable s);
     }
 
@@ -39,9 +41,9 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
         editCharNameFilter = itemView.findViewById(R.id.edit_input_name);
         txtTotalCharCount = itemView.findViewById(R.id.text_character_count);
 
-        imgbuttonLocation.setOnClickListener(v -> listener.onLocationClicked());
-        imgbuttonSpecies.setOnClickListener(v -> listener.onSpeciesClicked());
-        imgbuttonStatus.setOnClickListener(v -> listener.onStatusClicked());
+        imgbuttonLocation.setOnClickListener(v -> listener.onLocationClicked(imgbuttonLocation));
+        imgbuttonSpecies.setOnClickListener(v -> listener.onSpeciesClicked(imgbuttonSpecies));
+        imgbuttonStatus.setOnClickListener(v -> listener.onStatusClicked(imgbuttonStatus));
         editCharNameFilter.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -59,10 +61,6 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
-    }
-
-    public void incrementCount() {
-        count++;
     }
 
     public void setCount(int i) {

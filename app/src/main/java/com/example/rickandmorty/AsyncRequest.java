@@ -14,7 +14,6 @@ class AsyncRequest extends AsyncTask<Void, Collection<Character>, Void> {
     private static final boolean NOT_FINISHED = false;
 
     private Character characterApiWrapper;
-    private Collection<Character> collection = new ArrayList<>();
     private CharacterAdapter adapter;
 
 
@@ -28,14 +27,11 @@ class AsyncRequest extends AsyncTask<Void, Collection<Character>, Void> {
         waitForCancel(400);
         if (isCancelled())
             return null;
-
         int page = 1;
         Collection<Character> tempCollection;
-        //collection = rnmcharacter.filterAll();
         do {
             tempCollection = characterApiWrapper.filter(page);
             publishProgress(tempCollection);
-            //collection.addAll(tempCollection);
             page++;
             if (isCancelled())
                 break;
