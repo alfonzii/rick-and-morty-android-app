@@ -1,6 +1,7 @@
 package com.example.rickandmorty;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CharacterViewHolder extends RecyclerView.ViewHolder {
-    private ImageView imgHolding, imgSpeciesIcon, imgLocationIcon, imgStatusIcon;
+    private ImageView imgHolding, imgCharacter, imgSpeciesIcon, imgLocationIcon, imgStatusIcon;
     private TextView txtName, txtSpecies, txtLocation, txtStatus;
     private ConstraintLayout layout;
     private Character character;
@@ -23,6 +24,7 @@ public class CharacterViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         // TODO refactor through databinding
         imgHolding = itemView.findViewById(R.id.image_holding);
+        imgCharacter = itemView.findViewById(R.id.image_character);
         imgSpeciesIcon = itemView.findViewById(R.id.image_species_icon);
         imgLocationIcon = itemView.findViewById(R.id.image_location_icon);
         imgStatusIcon = itemView.findViewById(R.id.image_status_icon);
@@ -43,6 +45,7 @@ public class CharacterViewHolder extends RecyclerView.ViewHolder {
 
     public void setDetails(Context context, Character character, int position) {
         setCharacter(character);
+        setImage(context);
         setTxtName(context, position);
         setImgHolding(position);
         setSpecies(context);
@@ -52,6 +55,10 @@ public class CharacterViewHolder extends RecyclerView.ViewHolder {
 
     public void setCharacter(Character character) {
         this.character = character;
+    }
+
+    private void setImage(Context context){
+        new DownloadImage(context, imgCharacter).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, character.getImage().toString());
     }
 
     private void setTxtName(Context context, int position) {

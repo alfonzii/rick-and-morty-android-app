@@ -26,6 +26,16 @@
             app:srcCompat="@drawable/holding_mask_orange" />
 
         <ImageView
+            android:id="@+id/image_character"
+            android:layout_width="78dp"
+            android:layout_height="78dp"
+            app:layout_constraintBottom_toBottomOf="@id/image_holding"
+            app:layout_constraintEnd_toEndOf="@id/image_holding"
+            app:layout_constraintStart_toStartOf="@id/image_holding"
+            app:layout_constraintTop_toTopOf="@id/image_holding"
+            app:srcCompat="@drawable/roundedbutton" />
+
+        <ImageView
             android:id="@+id/image_location_icon"
             android:layout_width="20dp"
             android:layout_height="20dp"

@@ -2,7 +2,6 @@ package com.example.rickandmorty;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.view.ViewGroup;
 import com.rickandmortyapi.Character;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -22,55 +21,27 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private HeaderViewHolder.FilterInputListener filterInputListener;
 
-    private static int TYPE_HEADER = 0;
-    private static int TYPE_CHARACTER = 1;
+    private static final int TYPE_HEADER = 0;
+    private static final int TYPE_CHARACTER = 1;
 
-    public CharacterAdapter(Context context, HeaderViewHolder.FilterInputListener filterInputListener) {
+    CharacterAdapter(Context context, HeaderViewHolder.FilterInputListener filterInputListener) {
         this.context = context;
         this.data = new ArrayList<>();
         this.filterInputListener = filterInputListener;
     }
 
-    public void addItems(final Collection<Character> newItems) {
-        data.addAll(new ArrayList<>(newItems));
+    void addItems(final Character... newItems) {
+        Collections.addAll(data, newItems);
         // Keep RecyclerView scrolling state
         this.notifyItemRangeChanged(this.getItemCount() - 20, this.getItemCount());
     }
 
-    public void clearItems() {
+    void clearItems() {
         data.clear();
         this.notifyItemRangeRemoved(1, this.getItemCount() - 1);
     }
 
-    public void updateItems(final Collection<Character> newItems) {
-        final List<Character> oldItems = data;
-        data = new ArrayList<>(newItems);
-
-        DiffUtil.calculateDiff(new DiffUtil.Callback() {
-            @Override
-            public int getOldListSize() {
-                return oldItems.size();
-            }
-
-            @Override
-            public int getNewListSize() {
-                return newItems.size();
-            }
-
-            @Override
-            public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                return oldItems.get(oldItemPosition).getId().equals(data.get(newItemPosition).getId());
-            }
-
-            @Override
-            public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-                return oldItems.get(oldItemPosition).equals(data.get(newItemPosition));
-            }
-        }).dispatchUpdatesTo(this);
-
-    }
-
-    public void showCount(boolean isFinished) {
+    void showCount(boolean isFinished) {
         if (!isFinished) {
             header.setCount(this.getItemCount() - 1);
             header.updateLoadingTxtTotalCharCount();
@@ -82,10 +53,11 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemViewType(int position) {
-        if (position == 0)
+        if (position == 0) {
             return TYPE_HEADER;
-        else
+        } else {
             return TYPE_CHARACTER;
+        }
     }
 
     @NonNull
@@ -101,15 +73,12 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             view = LayoutInflater.from(context).inflate(R.layout.character_item_row, parent, false);
             return new CharacterViewHolder(view);
         }
-
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
         if (position >= 1) {
             ((CharacterViewHolder) viewHolder).setDetails(context, data.get(position - 1), position);
-        } else {
-            // TODO implement HeaderViewHolder onBind
         }
     }
 

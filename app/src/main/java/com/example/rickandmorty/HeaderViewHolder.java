@@ -9,8 +9,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class HeaderViewHolder extends RecyclerView.ViewHolder {
-    private ImageView imgGreenTop, imgRickAndMorty;
+class HeaderViewHolder extends RecyclerView.ViewHolder {
     private ImageButton imgbuttonLocation, imgbuttonSpecies, imgbuttonStatus;
     private EditText editCharNameFilter;
     private TextView txtTotalCharCount;
@@ -18,8 +17,6 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
     private FilterInputListener listener;
 
     private int count = 0;
-
-
 
     public interface FilterInputListener{
         void onLocationClicked(ImageButton button);
@@ -33,8 +30,6 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
         this.listener = listener;
 
         // TODO refactor through databinding
-        imgGreenTop = itemView.findViewById(R.id.image_green_top);
-        imgRickAndMorty = itemView.findViewById(R.id.image_rick_and_morty);
         imgbuttonLocation = itemView.findViewById(R.id.imgbutton_location);
         imgbuttonSpecies = itemView.findViewById(R.id.imgbutton_species);
         imgbuttonStatus = itemView.findViewById(R.id.imgbutton_status);
@@ -47,12 +42,10 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
         editCharNameFilter.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
 
             @Override
@@ -60,18 +53,17 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
                 listener.afterTextChanged(s);
             }
         });
-
     }
 
-    public void setCount(int i) {
+    void setCount(int i) {
         count = i;
     }
 
-    public void updateLoadingTxtTotalCharCount() {
-        txtTotalCharCount.setText(Integer.toString(count) + " " + "characters found yet (Loading another...)");
+    void updateLoadingTxtTotalCharCount() {
+        txtTotalCharCount.setText(count + " characters found yet (Loading another...)");
     }
 
-    public void updateTxtTotalCharCount() {
-        txtTotalCharCount.setText(Integer.toString(count) + " " + "characters found");
+    void updateTxtTotalCharCount() {
+        txtTotalCharCount.setText(count + " characters found");
     }
 }
