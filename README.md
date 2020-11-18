@@ -14,8 +14,8 @@
 7. Better implementation of `onDestroy()`
    * Support screen rotation
    * Application saves states between rotations
-
-8. Everything else non-algorithmical, non-low-level aware
+8. Finish filter buttons functionality (now they just change colors)
+9. Everything else non-algorithmical, non-low-level aware
    * `ViewHolder onClickListener` with intent to detailed description activity
    * better and nicer UI
    * different resolution screens compatibility
