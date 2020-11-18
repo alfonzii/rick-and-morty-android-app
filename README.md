@@ -10,7 +10,7 @@
    * Bind data to adapter in waves - after 20 items are parsed by API wrapper library, not at once after everything is parsed :heavy_check_mark:
    * Run the app and don't wait until introductory data loading is finished :heavy_check_mark:
    * `Loader` when loading :x: (simulated by bottom red TextView on MainActivity) :heavy_check_mark:
-6. Download and show image in `CharacterViewHolder`
+6. Download and show image in `CharacterViewHolder` :heavy_check_mark:
 7. Better implementation of `onDestroy()`
    * Support screen rotation
    * Application saves states between rotations
