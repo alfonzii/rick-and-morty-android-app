@@ -1,6 +1,7 @@
 package com.example.rickandmorty;
 
 import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,6 +16,7 @@ import java.util.regex.Pattern;
 public class CharacterViewHolder extends RecyclerView.ViewHolder {
     private ImageView imgHolding, imgSpeciesIcon, imgLocationIcon, imgStatusIcon;
     private TextView txtName, txtSpecies, txtLocation, txtStatus;
+    private ConstraintLayout layout;
     private Character character;
 
     public CharacterViewHolder(View itemView) {
@@ -28,6 +30,15 @@ public class CharacterViewHolder extends RecyclerView.ViewHolder {
         txtSpecies = itemView.findViewById(R.id.text_species_icon);
         txtLocation = itemView.findViewById(R.id.text_location_icon);
         txtStatus = itemView.findViewById(R.id.text_status_icon);
+        layout = itemView.findViewById(R.id.layout_constraint);
+
+        // No interface here, as this action should always produce same result
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // intent to new activity with setup values
+            }
+        });
     }
 
     public void setDetails(Context context, Character character, int position) {

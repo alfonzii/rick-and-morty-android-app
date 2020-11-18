@@ -37,6 +37,11 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.notifyItemRangeChanged(this.getItemCount() - 20, this.getItemCount());
     }
 
+    public void clearItems() {
+        data.clear();
+        this.notifyItemRangeRemoved(1, this.getItemCount() - 1);
+    }
+
     public void updateItems(final Collection<Character> newItems) {
         final List<Character> oldItems = data;
         data = new ArrayList<>(newItems);
@@ -65,9 +70,14 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     }
 
-    public void showCount() {
-        header.setCount(this.getItemCount()-1);
-        header.updateTxtTotalCharCount();
+    public void showCount(boolean isFinished) {
+        if (!isFinished) {
+            header.setCount(this.getItemCount() - 1);
+            header.updateLoadingTxtTotalCharCount();
+        } else {
+            header.setCount(this.getItemCount() - 1);
+            header.updateTxtTotalCharCount();
+        }
     }
 
     @Override

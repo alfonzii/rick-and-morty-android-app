@@ -23,7 +23,7 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
         void onLocationClicked();
         void onSpeciesClicked();
         void onStatusClicked();
-        void afterTextChanged();
+        void afterTextChanged(Editable s);
     }
 
     public HeaderViewHolder(View itemView, final FilterInputListener listener) {
@@ -55,7 +55,7 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
 
             @Override
             public void afterTextChanged(Editable s) {
-                listener.afterTextChanged();
+                listener.afterTextChanged(s);
             }
         });
 
@@ -67,6 +67,10 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
 
     public void setCount(int i) {
         count = i;
+    }
+
+    public void updateLoadingTxtTotalCharCount() {
+        txtTotalCharCount.setText(Integer.toString(count) + " " + "characters found yet (Loading another...)");
     }
 
     public void updateTxtTotalCharCount() {
