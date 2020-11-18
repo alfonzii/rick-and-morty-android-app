@@ -2,8 +2,8 @@
 
 ## Planned functionality
 1. Rewrite `ViewHolder` and `Adapter` to smarter versions :heavy_check_mark:
-2. Working with data locally after everything is downloaded (no need to call API all the time, as there is just nearly 700 items)
-2. Set searchbar filter and `AsyncTask` `cancel()` at text change in searchbar
+2. Working with data locally after everything is downloaded (no need to call API all the time, as there is just nearly 700 items) 
+2. Set searchbar filter and `AsyncTask` `cancel()` at text change in searchbar :heavy_check_mark:
 3. Screen rotation OFF (to get rid of `AsyncTask` memory leaks problems) :heavy_check_mark:
 4. `onDestroy()` cancels `AsyncTask` (memory management again)
 5. Smart data binding to `RecyclerView`
