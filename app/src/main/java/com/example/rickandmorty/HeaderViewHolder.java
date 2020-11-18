@@ -13,6 +13,8 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
     private EditText editCharNameFilter;
     private TextView txtTotalCharCount;
 
+    private int count = 0;
+
     public HeaderViewHolder(View itemView) {
         super(itemView);
         // TODO refactor through databinding
@@ -23,5 +25,17 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
         imgbuttonStatus = itemView.findViewById(R.id.imgbutton_status);
         editCharNameFilter = itemView.findViewById(R.id.edit_input_name);
         txtTotalCharCount = itemView.findViewById(R.id.text_character_count);
+    }
+
+    public void incrementCount() {
+        count++;
+    }
+
+    public void setCount(int i) {
+        count = i;
+    }
+
+    public void updateTxtTotalCharCount() {
+        txtTotalCharCount.setText(Integer.toString(count) + " " + "characters found");
     }
 }

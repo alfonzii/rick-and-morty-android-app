@@ -18,6 +18,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private List<Character> data;
     private Context context;
+    private HeaderViewHolder header = null;
 
     private static int TYPE_HEADER = 0;
     private static int TYPE_CHARACTER = 1;
@@ -27,11 +28,15 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         this.data = new ArrayList<>();
     }
 
+    public void addItems(final Collection<Character> newItems) {
+        data.addAll(new ArrayList<>(newItems));
+        // Keep RecyclerView scrolling state
+        this.notifyItemRangeChanged(this.getItemCount() - 20, this.getItemCount());
+    }
+
     public void updateItems(final Collection<Character> newItems) {
         final List<Character> oldItems = data;
         data = new ArrayList<>(newItems);
-
-        data.addAll(newItems);
 
         DiffUtil.calculateDiff(new DiffUtil.Callback() {
             @Override
@@ -57,6 +62,11 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     }
 
+    public void showCount() {
+        header.setCount(this.getItemCount()-1);
+        header.updateTxtTotalCharCount();
+    }
+
     @Override
     public int getItemViewType(int position) {
         if (position == 0)
@@ -71,9 +81,10 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         View view;
         if (viewType == TYPE_HEADER) {
             view = LayoutInflater.from(context).inflate(R.layout.header_recycler_layout, parent, false);
-            return new HeaderViewHolder(view);
-        }
-        else{
+            if (header == null)
+                header = new HeaderViewHolder(view);
+            return header;
+        } else {
             view = LayoutInflater.from(context).inflate(R.layout.character_item_row, parent, false);
             return new CharacterViewHolder(view);
         }
@@ -82,11 +93,10 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
-        if(position >= 1) {
-            ((CharacterViewHolder) viewHolder).setDetails(context, data.get(position-1), position);
-        }
-        else {
-            //TODO implement header layout functionality
+        if (position >= 1) {
+            ((CharacterViewHolder) viewHolder).setDetails(context, data.get(position - 1), position);
+        } else {
+            // TODO implement HeaderViewHolder onBind
         }
     }
 

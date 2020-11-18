@@ -90,7 +90,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/amaranth_regular"
-        android:text="TextView"
+        android:text="0 characters found"
         android:textColor="@color/colorDarkRed"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"

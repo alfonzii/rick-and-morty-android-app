@@ -2,6 +2,7 @@ package com.example.rickandmorty;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CharacterAdapter adapter;
     //private Collection<Character> collection;
-    private Context context;
+    //private Context context;
 
-    private class RefreshAsync extends AsyncTask<Void, Void, Void> {
+    private class RefreshAsync extends AsyncTask<Void, Collection<Character>, Void> {
 
         private Character rnmcharacter;
         private Collection<Character> collection = new ArrayList<>();
@@ -42,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
             //collection = rnmcharacter.filterAll();
             do {
                 tempCollection = rnmcharacter.list(page);
-                collection.addAll(tempCollection);
+                publishProgress(tempCollection);
+                //collection.addAll(tempCollection);
                 page++;
             } while (!tempCollection.isEmpty());
             //TODO
@@ -51,12 +53,23 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
+        @SafeVarargs
+        @Override
+        protected final void onProgressUpdate(Collection<Character>... tempCollection) {
+            //Parcelable recyclerViewState;
+            //recyclerViewState = recyclerView.getLayoutManager().onSaveInstanceState();
+
+            adapter.addItems(tempCollection[0]);
+            adapter.showCount();
+            //recyclerView.getLayoutManager().onRestoreInstanceState(recyclerViewState);
+        }
+
         @Override
         protected void onPostExecute(Void aVoid) {
 
-            adapter = new CharacterAdapter(context);
-            recyclerView.setAdapter(adapter);
-            adapter.updateItems(collection);
+
+
+            //adapter.updateItems(collection);
         }
     }
 
@@ -66,11 +79,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        context = this;
+        adapter = new CharacterAdapter(this);
 
         Character figure = new Character();
-        figure.withName("rick");
+        //figure.withName("rick");
 
+        recyclerView.setAdapter(adapter);
         new RefreshAsync(figure).execute();
     }
 }
