@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HeaderViewHolder.FilterInputListener {
 
     long startTime;
 
@@ -79,12 +79,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new CharacterAdapter(this);
+        adapter = new CharacterAdapter(this, this);
 
         Character figure = new Character();
         //figure.withName("rick");
 
         recyclerView.setAdapter(adapter);
         new RefreshAsync(figure).execute();
+    }
+
+    @Override
+    public void onLocationClicked() {
+
+    }
+
+    @Override
+    public void onSpeciesClicked() {
+
+    }
+
+    @Override
+    public void onStatusClicked() {
+
+    }
+
+    @Override
+    public void afterTextChanged() {
+
     }
 }

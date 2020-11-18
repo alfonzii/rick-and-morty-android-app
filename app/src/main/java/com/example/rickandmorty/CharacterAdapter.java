@@ -20,12 +20,15 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private Context context;
     private HeaderViewHolder header = null;
 
+    private HeaderViewHolder.FilterInputListener filterInputListener;
+
     private static int TYPE_HEADER = 0;
     private static int TYPE_CHARACTER = 1;
 
-    public CharacterAdapter(Context context) {
+    public CharacterAdapter(Context context, HeaderViewHolder.FilterInputListener filterInputListener) {
         this.context = context;
         this.data = new ArrayList<>();
+        this.filterInputListener = filterInputListener;
     }
 
     public void addItems(final Collection<Character> newItems) {
@@ -82,7 +85,7 @@ public class CharacterAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         if (viewType == TYPE_HEADER) {
             view = LayoutInflater.from(context).inflate(R.layout.header_recycler_layout, parent, false);
             if (header == null)
-                header = new HeaderViewHolder(view);
+                header = new HeaderViewHolder(view, filterInputListener);
             return header;
         } else {
             view = LayoutInflater.from(context).inflate(R.layout.character_item_row, parent, false);

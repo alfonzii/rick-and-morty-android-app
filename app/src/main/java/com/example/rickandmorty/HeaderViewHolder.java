@@ -1,6 +1,8 @@
 package com.example.rickandmorty;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -15,8 +17,19 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
 
     private int count = 0;
 
-    public HeaderViewHolder(View itemView) {
+    FilterInputListener listener;
+
+    public interface FilterInputListener{
+        void onLocationClicked();
+        void onSpeciesClicked();
+        void onStatusClicked();
+        void afterTextChanged();
+    }
+
+    public HeaderViewHolder(View itemView, final FilterInputListener listener) {
         super(itemView);
+        this.listener = listener;
+
         // TODO refactor through databinding
         imgGreenTop = itemView.findViewById(R.id.image_green_top);
         imgRickAndMorty = itemView.findViewById(R.id.image_rick_and_morty);
@@ -25,6 +38,27 @@ public class HeaderViewHolder extends RecyclerView.ViewHolder {
         imgbuttonStatus = itemView.findViewById(R.id.imgbutton_status);
         editCharNameFilter = itemView.findViewById(R.id.edit_input_name);
         txtTotalCharCount = itemView.findViewById(R.id.text_character_count);
+
+        imgbuttonLocation.setOnClickListener(v -> listener.onLocationClicked());
+        imgbuttonSpecies.setOnClickListener(v -> listener.onSpeciesClicked());
+        imgbuttonStatus.setOnClickListener(v -> listener.onStatusClicked());
+        editCharNameFilter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                listener.afterTextChanged();
+            }
+        });
+
     }
 
     public void incrementCount() {
